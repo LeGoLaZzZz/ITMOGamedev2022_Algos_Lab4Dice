@@ -3,6 +3,7 @@
 ## Схема UML  
 ![](Lab4UML.png)
 
+## Замеры, диаграммы
 <details style="background-color: rgba(55,63,111,0.35); font-size: 24px;">
 <summary>Результаты замеров d6 и d10</summary>
 
