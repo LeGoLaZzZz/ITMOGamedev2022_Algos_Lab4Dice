@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class IDice
+{
+    public int GetRandomSide()
+}
+class DNDice
+{
+    int sideN
+}
+class MultiSidesDice{
+    int sideCount
+    int sides[]
+}
+
+IDice <|-d- D6Dice
+IDice <|-d- DNDice
+IDice <|-d- MultiSidesDice
+
+
+
+class RollFunction
+{
+int RollDice(const IDice &dice, const int rollCount, const IDiceRollModificator *modificators,const int ModificatorsCount)
+int RollDice(const DiceRollData &diceData)
+int RollDice(const DiceRollData *dices, const int dicesCount)
+int RollDice(const std::initializer_list<DiceRollData> args)
+}
+
+struct DiceRollData {
+    IDice *dice;
+    int rollCount;
+    IDiceRollModificator *modificators;
+    int ModificatorsCount;
+}
+
+
+abstract class IDiceRollModificator
+{
+    virtual int Modifiy(int rollResult) const = 0;
+}
+
+class AddToResultModificator
+{
+    int addAmount;
+}
+
+IDiceRollModificator <|-d- AddToResultModificator
+
+IDiceRollModificator <-u- RollFunction
+IDice <-u- RollFunction
+DiceRollData <-u- RollFunction
+
+
+
+
+@enduml
